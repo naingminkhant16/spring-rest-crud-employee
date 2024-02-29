@@ -9,17 +9,17 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class EmployeeDAOImpl implements EmployeeDAO {
+public class EmployeeDAOJpaImpl implements EmployeeDAO {
     private EntityManager entityManager;
 
     @Autowired
-    public EmployeeDAOImpl(EntityManager entityManager) {
+    public EmployeeDAOJpaImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
     public List<Employee> getAll() {
-        TypedQuery query = entityManager.createQuery("From Employee", Employee.class);
+        TypedQuery<Employee> query = entityManager.createQuery("From Employee", Employee.class);
         return query.getResultList();
     }
 
